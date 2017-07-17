@@ -55,23 +55,24 @@ import { trigger,  state, style, animate, transition } from '@angular/animations
             color: #00a19c;
         }
       `],
-      animations: [
-          trigger('LineAnime', [
-            state('inactive', style({
-              backgroundColor: '#eee',
-              transform: 'scale(1)'
-            })),
-            state('active',   style({
-              backgroundColor: '#cfd8dc',
-              transform: 'scale(1.1)'
-            })),
-            transition('inactive => active', animate('100ms ease-in')),
-            transition('active => inactive', animate('100ms ease-out'))
-          ])
-        ]
+  animations: [
+      trigger('LineAnime', [
+        state('inactive', style({
+          backgroundColor: 'red',
+          transform: 'scale(1)'
+        })),
+        state('active',   style({
+          backgroundColor: 'green',
+          transform: 'scale(1.1)'
+        })),
+        transition('inactive => active', animate('100ms ease-in')),
+        transition('active => inactive', animate('100ms ease-out'))
+      ])
+    ]
 })
 export class NavComponent {
     lines = [1, 2, 3];
+    // lines = [{name: '1', state: 'inactive'}, {name: '2', state: 'inactive'}, {name: '3', state: 'inactive'}];
     nav: boolean = false;
     lineStyle;
     pages = ['Home', 'About', 'Contacts'];
@@ -84,10 +85,12 @@ export class NavComponent {
         this.nav = !this.nav;
         if(this.nav) {
             this.lines = [1, 2];
+            // this.lines = [{name: '1', state: 'inactive'}, {name: '2', state: 'inactive'}];
             this.lineStyle[0].style.transform = 'rotate(45deg)';
             this.lineStyle[1].style.transform = 'rotate(-45deg)';
         } else {
             this.lines = [1, 2, 3];
+            // this.lines = [{name: '1', state: 'inactive'}, {name: '2', state: 'inactive'}, {name: '3', state: 'inactive'}];
             this.lineStyle[0].style.transform = 'rotate(0)';
             this.lineStyle[1].style.transform = 'rotate(0)';
         }
