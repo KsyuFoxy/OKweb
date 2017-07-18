@@ -53,8 +53,11 @@ p {
     box-shadow: 9px -3px 5px white;
     background: radial-gradient(#a7a7a7 25%, #d5d5d5 53%, white 73%)
 }
-.nav-content {
+.nav-component {
     position: absolute;
     top: 0;
     right: 0;
+    width: 215px;
+    height: 100vh;
+    overflow: hidden;
 }

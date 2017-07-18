@@ -1,14 +1,14 @@
-import { Component, ElementRef } from '@angular/core';
-import { trigger,  state, style, animate, transition } from '@angular/animations';
+import { Component } from '@angular/core';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'navigation',
   template: `
-        <div class='nav-content' (click)='showNav()'
+        <div class='nav-content' (click)="toggleNav()"
                 (mouseover)="over ? 'hover-nav' : 'none' ">
-            <div *ngFor='let line of lines' [@LineAnime]="line.state" class='nav-line'></div>
+            <div *ngFor='let line of lines' [@NavLinesAnimation]="line.state" class='nav-line'></div>
         </div>
-        <ul *ngIf='nav'>
+        <ul [@NavAnimation]="navState.state">
             <li *ngFor='let page of pages'>{{page}}</li>
         </ul>
     `,
@@ -36,7 +36,7 @@ import { trigger,  state, style, animate, transition } from '@angular/animations
             top: 0;
             right: 0;
             width: 175px;
-            height: 100vh;
+            height: 87vh;
             background-color: rgba(208, 211, 212, 0.8);;
             margin: 0;
             padding: 120px 20px 0 20px;
@@ -56,43 +56,34 @@ import { trigger,  state, style, animate, transition } from '@angular/animations
         }
       `],
   animations: [
-      trigger('LineAnime', [
-        state('inactive', style({
-          backgroundColor: 'red',
-          transform: 'scale(1)'
-        })),
-        state('active',   style({
-          backgroundColor: 'green',
-          transform: 'scale(1.1)'
-        })),
-        transition('inactive => active', animate('100ms ease-in')),
-        transition('active => inactive', animate('100ms ease-out'))
-      ])
+      trigger('NavLinesAnimation', [
+        state('lines', style({ opacity: 1 })),
+        state('closeLine1', style({ transform: 'rotate(45deg)'})),
+        state('closeLine2', style({ transform: 'rotate(-45deg)', marginTop: '-10px'})),
+        state('closeLine3', style({ opacity: 0, marginTop: '20px' })),
+        transition('lines <=> closeLine1, lines <=> closeLine2', animate('1000ms ease-in-out')),
+        transition('lines => closeLine3', animate('400ms ease-out')),
+        transition('closeLine3 => lines', animate('400ms 600ms ease-out'))
+    ]),
+    trigger('NavAnimation', [
+        state('hide', style({right: '-220px'})),
+        state('show', style({right: 0})),
+        transition('hide => show', animate('400ms ease-in')),
+        transition('show => hide', animate('400ms 600ms ease-in'))
+    ])
     ]
 })
 export class NavComponent {
-    lines = [1, 2, 3];
-    // lines = [{name: '1', state: 'inactive'}, {name: '2', state: 'inactive'}, {name: '3', state: 'inactive'}];
-    nav: boolean = false;
-    lineStyle;
+    lines = [{name: '1', state: 'lines'}, {name: '2', state: 'lines'}, {name: '3', state: 'lines'}];
+    state: string;
+    navState = {state: 'hide'};
     pages = ['Home', 'About', 'Contacts'];
 
-    constructor(el: ElementRef) {
-        this.lineStyle = el.nativeElement.getElementsByClassName('nav-line');
+    toggleNav() {
+        this.navState.state = (this.navState.state === 'hide' ? 'show' : 'hide');
+        this.lines[0].state = (this.lines[0].state === 'lines' ? 'closeLine1' : 'lines');
+        this.lines[1].state = (this.lines[1].state === 'lines' ? 'closeLine2' : 'lines');
+        this.lines[2].state = (this.lines[2].state === 'lines' ? 'closeLine3' : 'lines');
     }
 
-    showNav() {
-        this.nav = !this.nav;
-        if(this.nav) {
-            this.lines = [1, 2];
-            // this.lines = [{name: '1', state: 'inactive'}, {name: '2', state: 'inactive'}];
-            this.lineStyle[0].style.transform = 'rotate(45deg)';
-            this.lineStyle[1].style.transform = 'rotate(-45deg)';
-        } else {
-            this.lines = [1, 2, 3];
-            // this.lines = [{name: '1', state: 'inactive'}, {name: '2', state: 'inactive'}, {name: '3', state: 'inactive'}];
-            this.lineStyle[0].style.transform = 'rotate(0)';
-            this.lineStyle[1].style.transform = 'rotate(0)';
-        }
-    }
 }
