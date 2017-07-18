@@ -33,18 +33,18 @@ p {
     background-image: url('/src/app/image/webOK_bg.jpg');
 }
 .home-photo {
-    width: 600px;
+    width: 45em;
     height: 100vh;
 }
 .home-photo img {
-    width: 600px;
+    width: 45em;
     height: 100vh;
     object-fit: cover;
 }
 .home-content {
     position: absolute;
-    top: 35%;
-    left: 460px;
+    top: 30%;
+    left: 36.7em;
 }
 .divide-line {
     width: 550px;
@@ -60,4 +60,7 @@ p {
     width: 215px;
     height: 100vh;
     overflow: hidden;
+}
+.cupture {
+    margin-top: 14em;
 }

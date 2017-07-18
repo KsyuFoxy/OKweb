@@ -52,6 +52,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
         }
         li:hover {
             cursor: pointer;
+            transform: scale(1.08);
             color: #00a19c;
         }
       `],

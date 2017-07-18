@@ -3,10 +3,17 @@
         <img src="" alt="">
     </div>
     <div class="home-content">
-        <h1>Someme</h1>
+        <h1>
+            <span *ngFor='let l of ls; let i = index' [@blurAnimation]='l.state'
+                (mouseenter)='blurText()' (mouseleave)='backText()'>{{l.letter}}{{i}}</span>
+        </h1>
+        <h1>
+            <span *ngFor='let letter of letters' [blur-text]>{{letter}}</span>
+        </h1>
         <h1>NameNameN</h1>
         <div class="divide-line"></div>
         <h2>Some anotherTextHere</h2>
+        <p class="cupture">This site was built using Angular 2 and styled with SCSS</p>
     </div>
     <navigation class='nav-component'></navigation>
 
