@@ -5,7 +5,6 @@ import { Directive, ElementRef, HostListener, Input, ViewChild } from '@angular/
 })
 export class BlurTextDirective {
     constructor(private el: ElementRef) {
-        console.log('el',  this.el.nativeElement)
     }
 
     @Input('blur-text') blurText: string;

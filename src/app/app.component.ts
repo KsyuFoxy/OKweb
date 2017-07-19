@@ -1,6 +1,6 @@
-import { Component, Input, HostListener, ElementRef, ViewChild } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { NavComponent } from './nav.component';
-import { trigger, state, style, animate, transition } from '@angular/animations';
+import { trigger, state, style, animate, transition, keyframes } from '@angular/animations';
 
 @Component({
   selector: 'app-root',
@@ -8,26 +8,41 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
   styleUrls: ['./app.component.css'],
   animations: [
       trigger('blurAnimation', [
-          state('stable', style({color: 'white', transform: 'scale(1)'})),
-          state('blur', style({color: 'green', transform: 'scale(1.1)'})),
-          transition('stable <=> blur', animate('200ms ease-out'))
-      ])
+          state('stable', style({color: 'white'})),
+            // transition('stable => blur', animate('200ms ease-out')),
+          state('blur', style({color: '#d0d3d4', transform: 'scale(1, 1)'})),
+          transition('blur <=> stable', [
+              animate(1000, keyframes([
+                style({color: 'white', transform: 'scale(1, 1)', offset: 0.5}),
+                style({color: '#d0d3d4', transform: 'scale(1.5, 1.1)', offset: 0.7}),
+                style({color: '#d0d3d4', transform: 'scale(1, 0.8)', offset: 0.8}),
+                style({color: '#d0d3d4', transform: 'scale(1.1, 1.1)', offset: 1}),
+              ]))
+            ])
+    ])
   ]
 })
 export class AppComponent {
-    letters = ['S','o', 'm', 'e', 'm', 'e'];
-    @ViewChild('blure') blure: ElementRef;
-    index: number;
-    ls = [{letter: 'S', state: ''}, {letter: 'o', state: ''}, {letter: 'm', state: ''}];
+    letterNs = [{name: 'C', state: ''}, {name: 'o', state: ''}, {name: 'n', state: ''},
+               {name: 't', state: ''}, {name: 'e', state: ''}, {name: 'n', state: ''}, {name: 't', state: ''}];
+   letterFs = [{name: 'D', state: ''}, {name: 'e', state: ''}, {name: 'f', state: ''}, {name: 'i', state: ''}, {name: 'n', state: ''},
+              {name: 'i', state: ''}, {name: 't', state: ''}, {name: 'i', state: ''}, {name: 'o', state: ''}, {name: 'n', state: ''}];
     state: string = 'stable';
+    leftN = 75;
+    leftF = 0;
+    constructor() {}
 
-    blurText() {
-        this.ls[0].state = 'blur';
+    letteNLeft(i: number) {
+        return this.leftN + i*55 + 'px';
     }
-    backText() {
-        this.ls[0].state = 'stable';
+    letteFLeft(i: number) {
+        return this.leftF + i*55 + 'px';
+    }
+    blurText(letter: any) {
+        letter.state = 'blur';
+    }
+    backText(letter: any) {
+        letter.state = 'stable';
     }
 
-  // https://greensock.com/
-  // <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/TweenMax.min.js"></script>
 }
