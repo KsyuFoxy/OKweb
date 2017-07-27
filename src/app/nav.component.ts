@@ -83,7 +83,7 @@ export class NavComponent {
     lines = [{name: '1', state: 'lines'}, {name: '2', state: 'lines'}, {name: '3', state: 'lines'}];
     state: string;
     navState = {state: 'hide'};
-    pages = [{name: 'Home',  link: ''}, {name: 'About',  link: '/about'}, {name: 'Contacts',  link: '/contacts'}];
+    pages = [{name: 'Home',  link: '/home'}, {name: 'About',  link: '/about'}, {name: 'Contacts',  link: '/contacts'}];
     link: string;
     navLineColor: string;
 

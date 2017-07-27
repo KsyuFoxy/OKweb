@@ -30,7 +30,7 @@ const appRoutes: Routes = [];
     BrowserAnimationsModule,
     RouterModule.forRoot(
         this.appRoutes = [
-          { path: 'home', component: AppComponent },
+          { path: 'home', component: HomeComponent },
           { path: 'about', component: AboutComponent },
           { path: 'contacts', component: ContactsComponent },
         ]

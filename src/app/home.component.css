@@ -1,0 +1,61 @@
+h1 {
+    font-family: 'Haettenschweiler';
+    font-size: 120px;
+    letter-spacing: 8px;
+    color: white;
+    margin: 0;
+    line-height: 100px;
+}
+h1 div {
+    position: absolute;
+    top: -100px;
+    text-align: center;
+    width: 50px;
+    display: inline;
+}
+h1:nth-child(2) div{
+    top: 0;
+    left: -20px;
+}
+h1 div:hover {
+    cursor: pointer;
+}
+h2 {
+    font-family: 'Haettenschweiler';
+    font-size: 80px;
+    letter-spacing: 4px;
+    margin: 45px 0;
+    color: #00a19c /*blue*/
+}
+h3 {
+    color: #d0d3d4 /*light-grey*/
+}
+p {
+    font-family: 'HP Simplified';
+    color: #515151 /*dark-grey*/
+}
+.home-photo {
+    width: 45em;
+    height: 100vh;
+}
+.home-photo img {
+    width: 45em;
+    height: 100vh;
+    object-fit: cover;
+}
+.home-content {
+    position: absolute;
+    top: 30%;
+    left: 36.7em;
+}
+.constant-content {
+    position: relative;
+    top: 105px;
+}
+.divide-line {
+    width: 550px;
+    height: 3px;
+    margin: 50px 0;
+    box-shadow: 9px -3px 5px white;
+    background: radial-gradient(#a7a7a7 25%, #d5d5d5 53%, white 73%)
+}

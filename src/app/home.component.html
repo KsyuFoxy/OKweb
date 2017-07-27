@@ -1,0 +1,21 @@
+<div class="">
+    <div class="home-photo">
+        <img src="" alt="">
+    </div>
+    <div class="home-content">
+        <h1>
+            <div *ngFor='let letterN of letterNs; let i = index' [@blurAnimation]='letterN.state'
+                (mouseenter)='blurText(letterN)' (mouseleave)='backText(letterN)'
+                [style.left]='letteNLeft(i)'>{{letterN.name}}</div>
+        </h1>
+        <h1>
+            <div *ngFor='let letterF of letterFs; let i = index' [@blurAnimation]='letterF.state'
+                (mouseenter)='blurText(letterF)' (mouseleave)='backText(letterF)'
+                [style.left]='letteFLeft(i)'>{{letterF.name}}</div>
+        </h1>
+        <div class="constant-content">
+            <div class="divide-line"></div>
+            <h2>Some anotherTextHere</h2>
+        </div>
+    </div>
+</div>
