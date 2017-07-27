@@ -9,7 +9,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
             <div *ngFor='let line of lines' [@NavLinesAnimation]="line.state" class='nav-line'></div>
         </div>
         <ul [@NavAnimation]="navState.state">
-            <li *ngFor='let page of pages'>{{page}}</li>
+            <li *ngFor='let page of pages' [routerLink]="page.link">{{page.name}}</li>
         </ul>
     `,
   styles: [`
@@ -78,7 +78,8 @@ export class NavComponent {
     lines = [{name: '1', state: 'lines'}, {name: '2', state: 'lines'}, {name: '3', state: 'lines'}];
     state: string;
     navState = {state: 'hide'};
-    pages = ['Home', 'About', 'Contacts'];
+    pages = [{name: 'Home',  link: '/home'}, {name: 'About',  link: '/about'}, {name: 'Contacts',  link: '/contacts'}];
+    link: string;
 
     toggleNav() {
         this.navState.state = (this.navState.state === 'hide' ? 'show' : 'hide');
