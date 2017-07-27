@@ -4,12 +4,11 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 @Component({
   selector: 'navigation',
   template: `
-        <div class='nav-content' (click)="toggleNav()"
-                (mouseover)="over ? 'hover-nav' : 'none' ">
-            <div *ngFor='let line of lines' [@NavLinesAnimation]="line.state" class='nav-line'></div>
+        <div class='nav-content' (click)="toggleNav()" (mouseover)="changeNavColor($event)" (mouseout)="changeNavColor($event)">
+            <div *ngFor='let line of lines' [@NavLinesAnimation]="line.state" [ngClass]="navLineColor" class='nav-line'></div>
         </div>
         <ul [@NavAnimation]="navState.state">
-            <li *ngFor='let page of pages' [routerLink]="page.link">{{page.name}}</li>
+            <li *ngFor='let page of pages' [routerLink]="page.link" (click)='toggleNav()'>{{page.name}}</li>
         </ul>
     `,
   styles: [`
@@ -24,9 +23,6 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
             height: 3px;
             background-color: #00a19c /*blue*/;
             margin: 10px 0;
-        }
-        .hover-nav {
-            background-color: #d0d3d4 /*light-grey*/;
         }
         .nav-content:hover {
             cursor: pointer;
@@ -55,6 +51,15 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
             transform: scale(1.08);
             color: #00a19c;
         }
+        .blue {
+            background-color: #00a19c;
+        }
+        .grey {
+            background-color: #d0d3d4;
+        }
+        .white {
+            background-color: white;
+        }
       `],
   animations: [
       trigger('NavLinesAnimation', [
@@ -62,15 +67,15 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
         state('closeLine1', style({ transform: 'rotate(45deg)'})),
         state('closeLine2', style({ transform: 'rotate(-45deg)', marginTop: '-10px'})),
         state('closeLine3', style({ opacity: 0, marginTop: '20px' })),
-        transition('lines <=> closeLine1, lines <=> closeLine2', animate('1000ms ease-in-out')),
-        transition('lines => closeLine3', animate('400ms ease-out')),
-        transition('closeLine3 => lines', animate('400ms 600ms ease-out'))
+        transition('lines <=> closeLine1, lines <=> closeLine2', animate('500ms ease-in-out')),
+        transition('lines => closeLine3', animate('200ms ease-out')),
+        transition('closeLine3 => lines', animate('200ms 300ms ease-out'))
     ]),
     trigger('NavAnimation', [
         state('hide', style({right: '-220px'})),
         state('show', style({right: 0})),
         transition('hide => show', animate('400ms ease-in')),
-        transition('show => hide', animate('400ms 600ms ease-in'))
+        transition('show => hide', animate('500ms 200ms ease-out'))
     ])
     ]
 })
@@ -78,14 +83,21 @@ export class NavComponent {
     lines = [{name: '1', state: 'lines'}, {name: '2', state: 'lines'}, {name: '3', state: 'lines'}];
     state: string;
     navState = {state: 'hide'};
-    pages = [{name: 'Home',  link: '/home'}, {name: 'About',  link: '/about'}, {name: 'Contacts',  link: '/contacts'}];
+    pages = [{name: 'Home',  link: ''}, {name: 'About',  link: '/about'}, {name: 'Contacts',  link: '/contacts'}];
     link: string;
+    navLineColor: string;
 
     toggleNav() {
         this.navState.state = (this.navState.state === 'hide' ? 'show' : 'hide');
         this.lines[0].state = (this.lines[0].state === 'lines' ? 'closeLine1' : 'lines');
         this.lines[1].state = (this.lines[1].state === 'lines' ? 'closeLine2' : 'lines');
         this.lines[2].state = (this.lines[2].state === 'lines' ? 'closeLine3' : 'lines');
+    }
+    changeNavColor($event){
+      this.navLineColor = $event.type == 'mouseover' ? 'grey' : 'blue';
+      if (this.navState.state === 'show') {
+          this.navLineColor = $event.type == 'mouseover' ? 'white' : 'blue';
+      }
     }
 
 }
