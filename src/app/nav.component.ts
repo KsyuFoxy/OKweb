@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
+import { Router } from '@angular/router';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'navigation',
   template: `
         <div class='nav-content' (click)="toggleNav()" (mouseover)="changeNavColor($event)" (mouseout)="changeNavColor($event)">
-            <div *ngFor='let line of lines' [@NavLinesAnimation]="line.state" [ngClass]="navLineColor" class='nav-line'></div>
+            <div *ngFor='let line of lines' [@NavLinesAnimation]="line.state" [ngClass]="pageNavColor" class='nav-line'></div>
         </div>
         <ul [@NavAnimation]="navState.state">
             <li *ngFor='let page of pages' [routerLink]="page.link" (click)='toggleNav()'>{{page.name}}</li>
@@ -85,19 +86,32 @@ export class NavComponent {
     navState = {state: 'hide'};
     pages = [{name: 'Home',  link: '/home'}, {name: 'About',  link: '/about'}, {name: 'Contacts',  link: '/contacts'}];
     link: string;
-    navLineColor: string;
+    pageNavColor: string;
+    activUrl: string;
 
+    constructor(private router:Router) {
+        router.events.subscribe((path:any) => {
+            this.activUrl = path.url;
+                if (this.activUrl === '/about' || this.activUrl === '/contacts') {
+                    this.pageNavColor = 'grey';
+                }
+        });
+    }
     toggleNav() {
         this.navState.state = (this.navState.state === 'hide' ? 'show' : 'hide');
         this.lines[0].state = (this.lines[0].state === 'lines' ? 'closeLine1' : 'lines');
         this.lines[1].state = (this.lines[1].state === 'lines' ? 'closeLine2' : 'lines');
         this.lines[2].state = (this.lines[2].state === 'lines' ? 'closeLine3' : 'lines');
     }
-    changeNavColor($event){
-      this.navLineColor = $event.type == 'mouseover' ? 'grey' : 'blue';
-      if (this.navState.state === 'show') {
-          this.navLineColor = $event.type == 'mouseover' ? 'white' : 'blue';
-      }
+    changeNavColor($event, page){
+        if (this.activUrl === '/home') {
+            this.pageNavColor = $event.type == 'mouseover' ? 'grey' : 'blue';
+        } else {
+            this.pageNavColor = $event.type == 'mouseover' ? 'blue' : 'grey';
+        }
+        if (this.navState.state === 'show') {
+          this.pageNavColor = $event.type == 'mouseover' ? 'white' : 'blue';
+        }
     }
 
 }

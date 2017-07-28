@@ -11,8 +11,9 @@ import { BlurTextDirective } from './blur-text';
 import { HomeComponent } from './home.component';
 import { AboutComponent } from './about.component';
 import { ContactsComponent } from './contacts.component';
+import { AgmCoreModule } from '@agm/core';
 
-const appRoutes: Routes = [];
+const routes: Routes = [];
 
 @NgModule({
   declarations: [
@@ -28,13 +29,16 @@ const appRoutes: Routes = [];
     FormsModule,
     HttpModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot(
-        this.appRoutes = [
-          { path: 'home', component: HomeComponent },
-          { path: 'about', component: AboutComponent },
-          { path: 'contacts', component: ContactsComponent },
-        ]
-        )
+    RouterModule.forRoot( this.appRoutes = [
+                          { path: '', redirectTo: 'home', pathMatch: 'full' },
+                          { path: 'home', component: HomeComponent },
+                          { path: 'about', component: AboutComponent },
+                          { path: 'contacts', component: ContactsComponent },
+                        ]
+                    ),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBli1C5mpTtEIVsD_Z7UwPl68yoriKakgw'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

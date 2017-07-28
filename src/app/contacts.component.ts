@@ -1,20 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { trigger, state, style, animate, transition, keyframes } from '@angular/animations';
 
 @Component({
   selector: 'contacts',
   template: `
         <div class="contacts-content">
-            <img class="OK-logo" src="./src/app/image/OK.png">
+            <a [routerLink]="['/home']">
+                <img class="OK-logo" src="./src/app/image/OK.png">
+            </a>
             <h2>Get in touch</h2>
             <div class="divide-line"></div>
             <p> my online profiles on </p>
             <div class="social-icons">
-                <img *ngFor="let icon of icons" src={{icon.path}} [@iconAnimation]='icon.state'
-                    (mouseenter)='blurText(icon)' (mouseleave)='backText(icon)'>
+                <img *ngFor="let icon of icons" [src]="'./src/app/image/' + icon.name + '.png'"
+                    [@iconAnimation]='icon.state' (mouseenter)='iconOver(icon)' (mouseleave)='iconLeave(icon)'>
             </div>
             <p>Location</p>
-            <div class="map"></div>
+            <div class="map">
+                <agm-map [latitude]="lat" [longitude]="lng" [zoom]="4" [scrollwheel]="false">
+                    <agm-marker [latitude]="lat" [longitude]="lng" [iconUrl]="marker"></agm-marker>
+                </agm-map>
+            </div>
         </div>
     `,
   styles: [`
@@ -59,34 +65,48 @@ import { trigger, state, style, animate, transition, keyframes } from '@angular/
           width: 70%;
           height: 25em;
           margin: 0 auto;
-          background-color: grey;
+          border: 2px solid white;
       }
+      agm-map {
+          height: 100%;
+        }
       `],
   animations: [
       trigger('iconAnimation', [
-          state('notHover', style({color: 'white'})),
-          state('blurI', style({color: '#d0d3d4', transform: 'scale(1, 1)'})),
-          transition('blurI <=> notHover', [
-              animate(1000, keyframes([
-                style({color: 'white', transform: 'scale(1, 1)', offset: 0.5}),
-                style({color: '#d0d3d4', transform: 'scale(1.5, 1.1)', offset: 0.7}),
-                style({color: '#d0d3d4', transform: 'scale(1, 0.8)', offset: 0.8}),
-                style({color: '#d0d3d4', transform: 'scale(1.1, 1.1)', offset: 1}),
+          state('out', style({transform: 'scale(1)'})),
+          state('hover', style({transform: 'scale(1.05)'})),
+          transition('out => hover', [
+              animate(800, keyframes([
+                style({transform: 'scale(1.05)', offset: 0.1}),
+                style({transform: 'scale(0.8)', offset: 0.5}),
+                style({transform: 'scale(1)', offset: 0.8}),
+                style({transform: 'scale(1.05)', offset: 1}),
               ]))
-            ])
+          ]),
+          transition('hover => out', [
+              animate(300, keyframes([
+                style({transform: 'scale(1.05)', offset: 0}),
+                style({transform: 'scale(1.1)', offset: 0.4}),
+                style({transform: 'scale(1.05)', offset: 1}),
+              ]))
+          ])
     ])
   ]
 })
 export class ContactsComponent {
-    icons = [{path: './src/app/image/Xing.png', state: ''}, {path: './src/app/image/Github.png', state: ''},
-            {path: './src/app/image/Skype.png', state: ''}, {path: './src/app/image/E-mail.png', state: ''}];
-    state: string = 'notHover'
+    @Input() navLineColor: string;
+    icons = [{name: 'Xing', state: ''}, {name: 'Github', state: ''}, {name: 'Skype', state: ''}, {name: 'E-mail', state: ''}];
+    state: string = 'out';
+    lat: number = 53.551086;
+    lng: number = 9.993682;
 
-    blurText(letter: any) {
-        letter.state = 'blurI';
+    iconOver(icon: any) {
+        icon.state = 'hover';
+        icon.name = icon.name + '_blue';
     }
-    backText(letter: any) {
-        letter.state = 'notHover';
+    iconLeave(icon: any) {
+        icon.state = 'out';
+        icon.name = icon.name.replace(/_blue/g, "");
     }
 
 }
