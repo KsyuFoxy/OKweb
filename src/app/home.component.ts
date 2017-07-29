@@ -4,7 +4,7 @@ import { trigger, state, style, animate, transition, keyframes } from '@angular/
 @Component({
   selector: 'home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+  styleUrls: ['./home.component.scss'],
   animations: [
       trigger('blurAnimation', [
           state('stable', style({color: 'white'})),

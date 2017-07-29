@@ -1,0 +1,26 @@
+$blue: #00a19c;
+$light-grey: #d0d3d4;
+$dark-grey: #515151;
+$line-gradient: radial-gradient(#a7a7a7 25%, #d5d5d5 53%, white 73%);
+h1 {
+    font-family: 'Haettenschweiler';
+    font-size: 120px;
+    letter-spacing: 8px;
+    color: white;
+    margin: 0;
+    line-height: 100px;
+}
+h2 {
+    font-family: 'Haettenschweiler';
+    font-size: 80px;
+    letter-spacing: 4px;
+    margin: 45px 0;
+    color: $blue;
+}
+h3 {
+    color: $light-grey;
+}
+p {
+    font-family: 'HP Simplified';
+    color: $dark-grey;
+}

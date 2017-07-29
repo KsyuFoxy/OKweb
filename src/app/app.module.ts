@@ -13,8 +13,6 @@ import { AboutComponent } from './about.component';
 import { ContactsComponent } from './contacts.component';
 import { AgmCoreModule } from '@agm/core';
 
-const routes: Routes = [];
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,8 +27,7 @@ const routes: Routes = [];
     FormsModule,
     HttpModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot(
-        this.appRoutes = [
+    RouterModule.forRoot([
                           { path: '', component: HomeComponent },
                           { path: 'about', component: AboutComponent },
                           { path: 'contacts', component: ContactsComponent },

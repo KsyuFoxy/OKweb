@@ -107,7 +107,7 @@ export class NavComponent {
     }
     changeNavColor($event, page){
         if (this.activUrl === '/') {
-            this.pageNavColor = $event.type == 'mouseover' ? 'grey' : 'blue';            
+            this.pageNavColor = $event.type == 'mouseover' ? 'grey' : 'blue';
         } else {
             this.pageNavColor = $event.type == 'mouseover' ? 'blue' : 'grey';
         }
