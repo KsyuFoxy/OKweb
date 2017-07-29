@@ -5,7 +5,7 @@ import { trigger, state, style, animate, transition, keyframes } from '@angular/
   selector: 'contacts',
   template: `
         <div class="contacts-content">
-            <a [routerLink]="['/home']">
+            <a [routerLink]="['/']">
                 <img class="OK-logo" src="./src/app/image/OK.png">
             </a>
             <h2>Get in touch</h2>
@@ -94,7 +94,6 @@ import { trigger, state, style, animate, transition, keyframes } from '@angular/
   ]
 })
 export class ContactsComponent {
-    @Input() navLineColor: string;
     icons = [{name: 'Xing', state: ''}, {name: 'Github', state: ''}, {name: 'Skype', state: ''}, {name: 'E-mail', state: ''}];
     state: string = 'out';
     lat: number = 53.551086;

@@ -84,7 +84,7 @@ export class NavComponent {
     lines = [{name: '1', state: 'lines'}, {name: '2', state: 'lines'}, {name: '3', state: 'lines'}];
     state: string;
     navState = {state: 'hide'};
-    pages = [{name: 'Home',  link: '/home'}, {name: 'About',  link: '/about'}, {name: 'Contacts',  link: '/contacts'}];
+    pages = [{name: 'Home',  link: '/'}, {name: 'About',  link: '/about'}, {name: 'Contacts',  link: '/contacts'}];
     link: string;
     pageNavColor: string;
     activUrl: string;
@@ -92,7 +92,9 @@ export class NavComponent {
     constructor(private router:Router) {
         router.events.subscribe((path:any) => {
             this.activUrl = path.url;
-                if (this.activUrl === '/about' || this.activUrl === '/contacts') {
+                if (this.activUrl === '/') {
+                    this.pageNavColor = 'blue';
+                } else {
                     this.pageNavColor = 'grey';
                 }
         });
@@ -104,8 +106,8 @@ export class NavComponent {
         this.lines[2].state = (this.lines[2].state === 'lines' ? 'closeLine3' : 'lines');
     }
     changeNavColor($event, page){
-        if (this.activUrl === '/home') {
-            this.pageNavColor = $event.type == 'mouseover' ? 'grey' : 'blue';
+        if (this.activUrl === '/') {
+            this.pageNavColor = $event.type == 'mouseover' ? 'grey' : 'blue';            
         } else {
             this.pageNavColor = $event.type == 'mouseover' ? 'blue' : 'grey';
         }

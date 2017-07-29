@@ -29,9 +29,9 @@ const routes: Routes = [];
     FormsModule,
     HttpModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot( this.appRoutes = [
-                          { path: '', redirectTo: 'home', pathMatch: 'full' },
-                          { path: 'home', component: HomeComponent },
+    RouterModule.forRoot(
+        this.appRoutes = [
+                          { path: '', component: HomeComponent },
                           { path: 'about', component: AboutComponent },
                           { path: 'contacts', component: ContactsComponent },
                         ]
