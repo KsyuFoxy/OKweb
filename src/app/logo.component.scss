@@ -6,7 +6,8 @@ svg {
 }
 .svg-container {
     position: absolute;
-    left: 5em;
+    left: 1em;
+    top: -1em;
 }
 svg:focus {
     outline: 0;
@@ -33,5 +34,20 @@ svg:focus {
         0% {stroke-dashoffset: 200; stroke: $blue; opacity: 1}
         30% {stroke: $light-grey; opacity: 0}
         100% {stroke-dashoffset: 0; stroke: $light-grey; opacity: 0}
+    }
+}
+@media (min-width: $mobile ) and (max-width: $tablet) {
+    .svg-container {
+        left: 2em;
+        top: 0;
+    }
+}
+@media (min-width: $tablet + 1) {
+    svg {
+      width: 95px;
+    }
+    .svg-container {
+        left: 3em;
+        top: 0;
     }
 }

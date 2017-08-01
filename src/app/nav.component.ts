@@ -12,56 +12,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
             <li *ngFor='let page of pages' [routerLink]="page.link" (click)='toggleNav()'>{{page.name}}</li>
         </ul>
     `,
-  styles: [`
-        .nav-content {
-            position: absolute;
-            top: 40px;
-            right: 75px;
-            z-index: 1;
-        }
-        .nav-line {
-            width: 60px;
-            height: 3px;
-            background-color: #00a19c /*blue*/;
-            margin: 10px 0;
-        }
-        .nav-content:hover {
-            cursor: pointer;
-        }
-        ul {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 175px;
-            height: 87vh;
-            background-color: rgba(208, 211, 212, 0.8);;
-            margin: 0;
-            padding: 120px 20px 0 20px;
-            text-align: center;
-            z-index: 0;
-        }
-        li {
-            display: block;
-            font-family: 'HP Simplified';
-            color: #515151;
-            margin: 60px 0;
-            font-size: 30px;
-        }
-        li:hover {
-            cursor: pointer;
-            transform: scale(1.08);
-            color: #00a19c;
-        }
-        .blue {
-            background-color: #00a19c;
-        }
-        .grey {
-            background-color: #d0d3d4;
-        }
-        .white {
-            background-color: white;
-        }
-      `],
+  styleUrls: ['./nav.component.scss'],
   animations: [
       trigger('NavLinesAnimation', [
         state('lines', style({ opacity: 1 })),

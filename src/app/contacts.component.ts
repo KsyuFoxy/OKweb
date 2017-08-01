@@ -4,7 +4,7 @@ import { trigger, state, style, animate, transition, keyframes } from '@angular/
 @Component({
   selector: 'contacts',
   template: `
-        <div class="contacts-content">
+        <div class="page-content">
             <a  [routerLink]="['/']">
                 <div class="OK-logo" (mouseenter)='logoOver()' (mouseleave)='logoLeave()'>
                     <img *ngFor='let img of imgs' [@logoAnimation]='img.imgState' src={{img.src}}>
@@ -55,7 +55,7 @@ import { trigger, state, style, animate, transition, keyframes } from '@angular/
           margin: 0;
           z-index: 2;
       }
-      .contacts-content {
+      .page-content {
           position: absolute;
           width: 100%;
           top: 3em;

@@ -2,25 +2,74 @@ $blue: #00a19c;
 $light-grey: #d0d3d4;
 $dark-grey: #515151;
 $line-gradient: radial-gradient(#a7a7a7 25%, #d5d5d5 53%, white 73%);
+$mobile: 480px;
+$tablet: 768px;
+$laptop: 1200px;
+
 h1 {
     font-family: 'Haettenschweiler';
-    font-size: 120px;
-    letter-spacing: 8px;
+    font-size: 90px;
+    letter-spacing: 2px;
     color: white;
     margin: 0;
-    line-height: 100px;
+    line-height: 80px;
 }
 h2 {
     font-family: 'Haettenschweiler';
-    font-size: 80px;
-    letter-spacing: 4px;
-    margin: 45px 0;
+    font-size: 40px;
+    letter-spacing: 1px;
+    margin: 25px 0 5px;
     color: $blue;
 }
 h3 {
+    font-family: 'Haettenschweiler';
+    font-size: 30px;
+    letter-spacing: 2.2px;
+    margin: 20px;
     color: $light-grey;
 }
 p {
     font-family: 'HP Simplified';
+    font-size: 16px;
     color: $dark-grey;
+}
+.page-content {
+    position: absolute;
+    width: 100%;
+    top: 2em;
+    text-align: center;
+}
+.divide-line {
+    width: 210px;
+    height: 2px;
+    margin: 0 auto;
+    box-shadow: 9px -3px 5px white;
+    background: $line-gradient;
+}
+@media (min-width: $mobile) and (max-width: $tablet) {
+
+}
+@media (min-width: $tablet + 1) {
+    h1 {
+        font-size: 120px;
+        letter-spacing: 8px;
+        line-height: 100px;
+    }
+    h2 {
+        font-size: 60px;
+        letter-spacing: 4px;
+        margin: 45px 0;
+    }
+    h3 {
+        font-size: 55px;
+        letter-spacing: 4px;
+    }
+    .page-content {
+        top: 3em;
+    }
+    .divide-line {
+        width: 550px;
+        height: 3px;
+        margin: 50px auto;
+    }
 }
