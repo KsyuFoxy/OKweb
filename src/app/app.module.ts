@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AgmCoreModule } from '@agm/core';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav.component';
@@ -11,7 +12,7 @@ import { BlurTextDirective } from './blur-text';
 import { HomeComponent } from './home.component';
 import { AboutComponent } from './about.component';
 import { ContactsComponent } from './contacts.component';
-import { AgmCoreModule } from '@agm/core';
+import { LogoComponent } from './logo.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AgmCoreModule } from '@agm/core';
     BlurTextDirective,
     HomeComponent,
     AboutComponent,
-    ContactsComponent
+    ContactsComponent,
+    LogoComponent
   ],
   imports: [
     BrowserModule,

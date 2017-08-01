@@ -1,0 +1,37 @@
+@import './global';
+
+svg {
+  width: 84px;
+  height: auto;
+}
+.svg-container {
+    position: absolute;
+    left: 5em;
+}
+svg:focus {
+    outline: 0;
+}
+.animateLogo {
+    cursor: pointer;
+    .logo-bg {
+        animation: drawBG 6s linear;
+    }
+    @keyframes drawBG {
+        0% {opacity: 0}
+        30% {opacity: 1}
+        100% {opacity: 1}
+    }
+    .logo-path {
+        fill-opacity: 0;
+        stroke: $blue;
+        stroke-width: 0.5;
+        stroke-dasharray: 200;
+        stroke-dashoffset: 200;
+        animation: drawPath 6s linear;
+    }
+    @keyframes drawPath {
+        0% {stroke-dashoffset: 200; stroke: $blue; opacity: 1}
+        30% {stroke: $light-grey; opacity: 0}
+        100% {stroke-dashoffset: 0; stroke: $light-grey; opacity: 0}
+    }
+}
