@@ -191,8 +191,16 @@ export class ContactsComponent {
     imgState: string;
     icons = [{name: 'Xing', state: 'out'}, {name: 'Github', state: 'out'}, {name: 'Skype', state: 'out'}, {name: 'E-mail', state: 'out'}];
     state: string;
-    locs = [{name: 'L', locState: 'down1left'}, {name: 'o', locState: 'down2left'}, {name: 'c', locState: 'down1left'}, {name: 'a', locState: 'down2left'},
-            {name: 't', locState: 'down1right'}, {name: 'i', locState: 'down2right'}, {name: 'o', locState: 'down1right'}, {name: 'n', locState: 'down2right'}];
+    locs = [
+        {name: 'L', locState: 'down1left', initial: 'down1left'},
+        {name: 'o', locState: 'down2left', initial: 'down2left'},
+        {name: 'c', locState: 'down1left', initial: 'down1left'},
+        {name: 'a', locState: 'down2left', initial: 'down2left'},
+        {name: 't', locState: 'down1right', initial: 'down1right'},
+        {name: 'i', locState: 'down2right', initial: 'down2right'},
+        {name: 'o', locState: 'down1right', initial: 'down1right'},
+        {name: 'n', locState: 'down2right', initial: 'down2right'}
+    ];
     locState: string = '';
 
     lat: number = 53.551086;
@@ -219,14 +227,14 @@ export class ContactsComponent {
     }
     locationOver() {
         this.markerOpacity = 0;
-        Array.prototype.map.call(this.locs, function(obj) {
-            obj.locState = 'transformation';
-        })
+        this.locs.forEach(obj => {
+            obj.locState = 'transformation'
+        });
         setTimeout (() => {
           this.markerOpacity = 1;
-          this.locs = [{name: 'L', locState: 'down1left'}, {name: 'o', locState: 'down2left'}, {name: 'c', locState: 'down1left'}, {name: 'a', locState: 'down2left'},
-                  {name: 't', locState: 'down1right'}, {name: 'i', locState: 'down2right'}, {name: 'o', locState: 'down1right'}, {name: 'n', locState: 'down2right'}];
-          console.log('locs', this.locs);
+          this.locs.forEach(obj => {
+              obj.locState = obj.initial;
+          });
       }, 1200);
 
     }
