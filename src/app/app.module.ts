@@ -7,12 +7,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AgmCoreModule } from '@agm/core';
 
 import { AppComponent } from './app.component';
-import { NavComponent } from './nav.component';
+import { NavComponent } from './nav/nav.component';
+import { HomeComponent } from './home/home.component';
+import { AboutComponent } from './about/about.component';
+import { ContactsComponent } from './contacts/contacts.component';
+import { LogoComponent } from './logo/logo.component';
+import { FDTextComponent } from './fd-text/fd-text.component';
+
 import { BlurTextDirective } from './blur-text';
-import { HomeComponent } from './home.component';
-import { AboutComponent } from './about.component';
-import { ContactsComponent } from './contacts.component';
-import { LogoComponent } from './logo.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { LogoComponent } from './logo.component';
     HomeComponent,
     AboutComponent,
     ContactsComponent,
-    LogoComponent
+    LogoComponent,
+    FDTextComponent
   ],
   imports: [
     BrowserModule,

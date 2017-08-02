@@ -1,0 +1,29 @@
+@import '../global';
+
+svg {
+  width: 500px;
+  height: auto;
+}
+.svg-container {
+    position: absolute;
+}
+.animateText {
+    cursor: pointer;
+    .text-path {
+        fill-opacity: 1;
+        stroke: $blue;
+        stroke-width: 0.2;
+        stroke-dasharray: 100;
+        stroke-dashoffset: 100;
+        animation: drawPath 10s linear;
+    }
+    @keyframes drawPath {
+        0% {stroke-dashoffset: 100; stroke: $blue; fill-opacity: 0}
+        30% {stroke: $blue; fill-opacity: 0}
+        40%  {stroke: transparent; fill-opacity: 1}
+        100% {stroke-dashoffset: 0; stroke: transparent; fill-opacity: 1}
+    }
+}
+.stopAnimateText {
+    animation: none;
+}

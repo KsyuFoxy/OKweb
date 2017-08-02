@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component ({
-    selector: 'logo',
+    selector: 'logo-svg',
     template: `
         <div class="svg-container" [ngClass]="isHover ? 'animateLogo' : '' " >
             <svg [routerLink]="['/']" (mouseenter)="isHover = !isHover" version="1.1" id="OK-logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -22,9 +22,9 @@ import { Component } from '@angular/core';
             </svg>
         </div>
     `,
-    styleUrls: ['./logo.component.scss'],
+    styleUrls: ['./logo-svg.component.scss'],
 })
- export class LogoComponent {
+ export class LogoSVGComponent {
      isHover: boolean = false;
 
  }

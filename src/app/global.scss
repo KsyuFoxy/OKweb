@@ -36,13 +36,13 @@ p {
 .page-content {
     position: absolute;
     width: 100%;
-    top: 2em;
+    top: 3em;
     text-align: center;
 }
 .divide-line {
     width: 210px;
     height: 2px;
-    margin: 0 auto;
+    margin: 1em auto 2em;
     box-shadow: 9px -3px 5px white;
     background: $line-gradient;
 }
@@ -63,9 +63,6 @@ p {
     h3 {
         font-size: 55px;
         letter-spacing: 4px;
-    }
-    .page-content {
-        top: 3em;
     }
     .divide-line {
         width: 550px;

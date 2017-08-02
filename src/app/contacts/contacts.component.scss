@@ -1,0 +1,56 @@
+@import '../global';
+
+.loc-letters {
+    width: 100%;
+    margin: 1em auto 0.5em;
+    cursor: pointer;
+    div {
+        display: inline-block;
+        position: relative;
+        font-family: 'HP Simplified';
+        color: $dark-grey;
+        font-size: 23px;
+        top: 0;
+        left: 0;
+        margin: 0;
+        z-index: 2;
+    }
+}
+.social-icons img {
+    margin: 1em;
+    &:hover {
+        transform: scale(1.03);
+        cursor: pointer;
+    }
+}
+.map {
+    width: 90%;
+    height: 12em;
+    margin: 0 auto;
+    border: 2px solid white;
+}
+agm-map {
+    height: 100%;
+  }
+agm-marker {
+  opacity: 0;
+}
+@media (min-width: $mobile) and (max-width: $tablet) {
+    .loc-letters{
+        margin: 1em auto 1.5em;
+    }
+    .map {
+        width: 75%;
+        height: 16em;
+    }
+}
+
+@media (min-width: $tablet + 1) {
+    .loc-letters {
+        margin: 50px auto 15px;
+    }
+    .map {
+        width: 70%;
+        height: 25em;
+    }
+}
