@@ -3,7 +3,18 @@
 .page-content {
     top: 0;
 }
-h1 div {
+.letterDiv {
+    position: relative;
+    width: 550px;
+    font-family: 'Haettenschweiler';
+    font-size: 90px;
+    letter-spacing: 2px;
+    line-height: 80px;
+    color: white;
+    margin: 0 auto;
+
+}
+.letterDiv div {
     position: absolute;
     top: -100px;
     text-align: center;
@@ -13,7 +24,7 @@ h1 div {
         cursor: pointer;
     }
 }
-h1:nth-child(2) div{
+.letterDiv:nth-child(2) div{
     top: 0;
     left: -20px;
 }
@@ -32,36 +43,23 @@ h1:nth-child(2) div{
 }
 .constant-content {
     position: relative;
-    top: 105px;
+    top: 1em;
     text-align: center;
 }
-// @media (min-width: $mobile + 1) and (max-width: $tablet) {
-//     .movable-content {
-//         width: 75%;
-//         margin: 0 auto;
-//     }
-//     h1 {
-//         line-height: 0;
-//         letter-spacing: -50px;
-//     }
-//     h1 div {
-//
-//         text-align: left;
-//         width: 0;
-//     }
-//     h1:nth-child(2) div{
-//         top: -18px;
-//     }
-// }
+@media (min-width: $mobile) and (max-width: $tablet) {
+    .letterDiv {
+        font-size: 70px;
+    }
+    .letterDiv:nth-child(1) div {
+        top: -75px;
+    }
+}
 @media (min-width: $tablet + 1) and (max-width: $laptop) {
     .home-photo {
         width: 70%;
     }
-    .home-info {
-        left: 15%;
-    }
     .constant-content {
-        left: -15%;
+        top: 105px;
     }
 }
 @media (min-width: $laptop + 1) {
@@ -71,8 +69,12 @@ h1:nth-child(2) div{
             width: 45em;
         }
     }
-    .home-info {
-        width: 39%;
-        left: 39.7em;
+    .letterDiv {
+        font-size: 120px;
+        letter-spacing: 8px;
+        line-height: 100px;
+    }
+    .constant-content {
+        top: 105px;
     }
 }
