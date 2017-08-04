@@ -15,12 +15,14 @@ import { LogoComponent } from './logo/logo.component';
 import { FDTextComponent } from './fd-text/fd-text.component';
 
 import { BlurTextDirective } from './blur-text';
+import { ClickOutside } from './click-directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     BlurTextDirective,
+    ClickOutside,
     HomeComponent,
     AboutComponent,
     ContactsComponent,

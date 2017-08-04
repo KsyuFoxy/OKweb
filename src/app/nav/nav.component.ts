@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component, Input} from '@angular/core';
 import { Router } from '@angular/router';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 
@@ -14,27 +14,27 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
     `,
   styleUrls: ['./nav.component.scss'],
   animations: [
-      trigger('NavLinesAnimation', [
-        state('lines', style({ opacity: 1 })),
-        state('closeLine1', style({ transform: 'rotate(45deg)'})),
-        state('closeLine2', style({ transform: 'rotate(-45deg)', marginTop: '-10px'})),
-        state('closeLine3', style({ opacity: 0, marginTop: '20px' })),
-        transition('lines <=> closeLine1, lines <=> closeLine2', animate('500ms ease-in-out')),
-        transition('lines => closeLine3', animate('200ms ease-out')),
-        transition('closeLine3 => lines', animate('200ms 300ms ease-out'))
-    ]),
-    trigger('NavAnimation', [
-        state('hide', style({right: '-220px'})),
-        state('show', style({right: 0})),
-        transition('hide => show', animate('400ms ease-in')),
-        transition('show => hide', animate('500ms 200ms ease-out'))
-    ])
+          trigger('NavLinesAnimation', [
+            state('lines', style({ opacity: 1 })),
+            state('closeLine1', style({ transform: 'rotate(45deg)'})),
+            state('closeLine2', style({ transform: 'rotate(-45deg)', marginTop: '-10px'})),
+            state('closeLine3', style({ opacity: 0, marginTop: '20px' })),
+            transition('lines <=> closeLine1, lines <=> closeLine2', animate('500ms ease-in-out')),
+            transition('lines => closeLine3', animate('200ms ease-out')),
+            transition('closeLine3 => lines', animate('200ms 300ms ease-out'))
+        ]),
+        trigger('NavAnimation', [
+            state('hide', style({right: '-220px'})),
+            state('show', style({right: 0})),
+            transition('hide => show', animate('400ms ease-in')),
+            transition('show => hide', animate('500ms 200ms ease-out'))
+        ])
     ]
 })
 export class NavComponent {
     lines = [{name: '1', state: 'lines'}, {name: '2', state: 'lines'}, {name: '3', state: 'lines'}];
     state: string;
-    navState = {state: 'hide'};
+    @Input() navState;
     pages = [{name: 'Home',  link: '/'}, {name: 'About',  link: '/about'}, {name: 'Contacts',  link: '/contacts'}];
     link: string;
     pageNavColor: string;
@@ -49,6 +49,7 @@ export class NavComponent {
                     this.pageNavColor = 'grey';
                 }
         });
+
     }
     toggleNav() {
         this.navState.state = (this.navState.state === 'hide' ? 'show' : 'hide');
@@ -66,5 +67,6 @@ export class NavComponent {
           this.pageNavColor = $event.type == 'mouseover' ? 'white' : 'blue';
         }
     }
+
 
 }

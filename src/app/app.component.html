@@ -1,5 +1,5 @@
 <div class="fixed-content">
     <router-outlet class="app-content"></router-outlet>
-    <navigation class='nav-component'></navigation>
+    <navigation class='nav-component' (clickOutside)="onClickedOutside($event)" [navState]='navState' [lines]='lines'></navigation>
     <p class="cupture">This site was built using Angular 2 and styled with SCSS</p>
 </div>

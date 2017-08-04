@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, animate, transition, keyframes } from '@angular/animations';
 
 @Component({
@@ -20,7 +20,7 @@ import { trigger, state, style, animate, transition, keyframes } from '@angular/
     ])
   ]
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
     letterNs = [{name: 'C', state: ''}, {name: 'o', state: ''}, {name: 'n', state: ''},
                {name: 't', state: ''}, {name: 'e', state: ''}, {name: 'n', state: ''}, {name: 't', state: ''}];
     letterFs = [{name: 'D', state: ''}, {name: 'e', state: ''}, {name: 'f', state: ''}, {name: 'i', state: ''}, {name: 'n', state: ''},
@@ -30,6 +30,14 @@ export class HomeComponent {
     leftF = 0;
 
     mobile = false;
+
+    ngOnInit() {
+            if( innerWidth < 768) {
+            this.mobile = true;
+        } else {
+            this.mobile = false;
+        }
+    }
 
     onResize($event) {
         if( innerWidth < 768) {

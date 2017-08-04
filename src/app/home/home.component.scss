@@ -55,6 +55,11 @@
     }
 }
 @media (min-width: $tablet + 1) and (max-width: $laptop) {
+    .letterDiv {
+        font-size: 120px;
+        letter-spacing: 8px;
+        line-height: 100px;
+    }
     .home-photo {
         width: 70%;
     }
