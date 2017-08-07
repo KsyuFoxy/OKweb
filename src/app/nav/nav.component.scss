@@ -1,6 +1,6 @@
 @import '../global';
 
-.nav-content {
+.nav-icon {
     position: absolute;
     top: 0.5em;
     right: 1em;
@@ -52,14 +52,17 @@ li {
     background-color: white;
 }
 @media (min-width: $mobile + 1) and (max-width: $tablet) {
-    .nav-content {
+    .nav-icon {
         top: 1.5em;
         right: 2em;
     }
 }
 @media (min-width: $tablet + 1)  {
-    .nav-content {
+    .nav-icon {
         top: 2.5em;
         right: 3em;
     }
+}
+.closeLine1Mobile {
+    color: red;
 }

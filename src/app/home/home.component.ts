@@ -40,12 +40,11 @@ export class HomeComponent implements OnInit {
     }
 
     onResize($event) {
-        if( innerWidth < 768) {
+        if (innerWidth < 768) {
         this.mobile = true;
-    } else {
-        this.mobile = false;
-    }
-        console.log('event', innerWidth)
+        } else {
+            this.mobile = false;
+        }
     }
 
     letteNLeft(i: number) {
