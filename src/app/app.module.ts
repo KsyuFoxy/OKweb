@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
+import { AboutIconsComponent } from './about/about-icons.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { LogoComponent } from './logo/logo.component';
 import { FDTextComponent } from './fd-text/fd-text.component';
@@ -25,6 +26,7 @@ import { ClickOutside } from './click-directive';
     ClickOutside,
     HomeComponent,
     AboutComponent,
+    AboutIconsComponent,
     ContactsComponent,
     LogoComponent,
     FDTextComponent

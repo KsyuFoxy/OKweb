@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
             <h2>Expirience</h2>
             <div class="divide-line"></div>
             <h3>Skills and Techniques</h3>
-            <div class="info-rows">
+            <div *ngIf="aboutText" class="info-rows">
                 <div>
                     <h2>Development skills:</h2>
                     <p *ngFor="let p1 of p1s">{{p1}}</p>
@@ -20,6 +20,8 @@ import { Component } from '@angular/core';
                     <p *ngFor="let p3 of p3s">{{p3}}</p>
                 </div>
             </div>
+            <about-icons *ngIf="aboutIcons"></about-icons>
+            <button (click)='toIcons()'>to {{button}}</button>
         </div>
 
     `,
@@ -29,5 +31,14 @@ export class AboutComponent {
     p1s = ['HTML5', 'CSS3', 'SCSS/SASS', 'Git', 'JavaScript', 'Angular2', 'jQuery', 'UI / UX Animation'];
     p2s = ['Adobe Photoshop', 'Adobe Illustrator', 'Adobe InDesign', 'Adobe Lightroom'];
     p3s = ['Balsamiq Mockups', 'CMS', 'API', 'Responsive design'];
+    aboutText: boolean = true;
+    aboutIcons: boolean = false;
+    button: string = 'icons';
+
+    toIcons() {
+        this.aboutText = !this.aboutText;
+        this.aboutIcons = !this.aboutIcons;
+        this.button = (this.button === 'icons' ? 'text' : 'icons');
+    }
 
 }

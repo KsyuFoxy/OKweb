@@ -53,6 +53,9 @@
     .letterDiv:nth-child(1) div {
         top: -75px;
     }
+    .constant-content {
+        top: 6em;
+    }
 }
 @media (min-width: $tablet + 1) and (max-width: $laptop) {
     .letterDiv {
