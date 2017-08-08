@@ -4,8 +4,8 @@ import { Component, Input } from '@angular/core';
     selector: 'slider',
     template: `
         <div class="slider">
-            <input  type="checkbox" [(checked)]="icons" id="slid" />
-            <label (click)='moveRadioButton()' for="slid"></label>
+            <input  type="checkbox" [(checked)]="!props.isText" />
+            <label (click)='moveRadioButton()'></label>
         </div>
     `,
     styleUrls: ['./slider.component.scss'],
@@ -13,20 +13,11 @@ import { Component, Input } from '@angular/core';
 
 export class SliderComponent {
     icons:boolean = true;
-    @Input() aboutText;
-    @Input() aboutIcons;
+    @Input() props;
+
     moveRadioButton() {
-        // this.aboutText = !this.aboutText;
-        // this.aboutIcons = !this.aboutIcons;
         this.icons = !this.icons;
-        if(this.icons) {
-            this.aboutText = false;
-            this.aboutIcons = true;
-        } else {
-            this.aboutText = true;
-            this.aboutIcons = false;
-        }
-        console.log(this.icons)
+        this.props.isText = !this.props.isText;
     }
 
 }
