@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, animate, transition, keyframes } from '@angular/animations';
+import { slideIn } from '../load-animation';
 
 @Component({
   selector: 'home',
@@ -17,7 +18,8 @@ import { trigger, state, style, animate, transition, keyframes } from '@angular/
                 style({color: '#d0d3d4', transform: 'scale(1.1, 1.1)', offset: 1}),
               ]))
             ])
-    ])
+    ]),
+    slideIn
   ]
 })
 export class HomeComponent implements OnInit {
@@ -30,6 +32,7 @@ export class HomeComponent implements OnInit {
     leftF = 0;
 
     mobile = false;
+    slideInState = 'in';
 
     ngOnInit() {
             if( innerWidth < 768) {

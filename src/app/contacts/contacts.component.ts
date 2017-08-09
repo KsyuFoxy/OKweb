@@ -1,17 +1,20 @@
 import { Component, Input } from '@angular/core';
 import { trigger, state, style, animate, transition, keyframes } from '@angular/animations';
+import { slideIn } from '../load-animation';
 
 @Component({
   selector: 'contacts',
   template: `
-        <div class="page-content">
+        <div class="page-content" [@slideIn]='slideInState'>
             <logo></logo>
             <h2>Get in touch</h2>
             <div class="divide-line"></div>
             <p> my online profiles on </p>
             <div class="social-icons">
-                <img *ngFor="let icon of icons" [src]="'./src/app/image/' + icon.name + '.png'"
-                    [@iconAnimation]='icon.state' (mouseenter)='iconOver(icon)' (mouseleave)='iconLeave(icon)'>
+                <a *ngFor="let icon of icons" [href]="icon.link" target="_blank">
+                    <img [src]="'./src/app/image/' + icon.name + '.png'"
+                         [@iconAnimation]='icon.state' (mouseenter)='iconOver(icon)' (mouseleave)='iconLeave(icon)'>
+                </a>
             </div>
             <div class='loc-letters' (mouseenter)='locationOver()'>
                 <div *ngFor='let loc of locs' [@locationAnimation]='loc.locState'>{{loc.name}}
@@ -81,10 +84,16 @@ import { trigger, state, style, animate, transition, keyframes } from '@angular/
             ]))
         ]),
     ]),
+    slideIn
   ]
 })
 export class ContactsComponent {
-    icons = [{name: 'Xing', state: 'out'}, {name: 'Github', state: 'out'}, {name: 'Skype', state: 'out'}, {name: 'E-mail', state: 'out'}];
+    icons = [
+        {name: 'Xing', state: 'out', link: 'http://www.xing.com/profile/Oksana_Kondratiuk'},
+        {name: 'Github', state: 'out', link: 'http://github.com/KsyuFoxy'},
+        {name: 'Skype', state: 'out', link: ''},
+        {name: 'E-mail', state: 'out', link: ''}
+    ];
     state: string;
     locs = [
         {name: 'L', locState: 'down1left', initial: 'down1left'},
@@ -102,6 +111,7 @@ export class ContactsComponent {
     lng: number = 9.993682;
     marker = './src/app/image/Location_blue.png';
     markerOpacity: number;
+    slideInState = 'in';
 
     iconOver(icon: any) {
         icon.state = 'hover';

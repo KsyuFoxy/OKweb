@@ -28,7 +28,7 @@ h3 {
     margin: 20px;
     color: $light-grey;
 }
-p {
+p, span {
     font-family: 'HP Simplified';
     font-size: 16px;
     color: $dark-grey;
@@ -38,6 +38,8 @@ p {
     width: 100%;
     top: 3em;
     text-align: center;
+    background-image: url('/src/app/image/webOK_bg.jpg');
+    padding-bottom: 2em;
 }
 .divide-line {
     width: 210px;
