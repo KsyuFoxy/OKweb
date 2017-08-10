@@ -17,7 +17,9 @@ import { LogoComponent } from './logo/logo.component';
 import { FDTextComponent } from './fd-text/fd-text.component';
 
 import { BlurTextDirective } from './blur-text';
+import { LogoSVGComponent } from './logo-svg/logo-svg.component';
 import { ClickOutside } from './click-directive';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { ClickOutside } from './click-directive';
     SliderComponent,
     ContactsComponent,
     LogoComponent,
-    FDTextComponent
+    FDTextComponent,
+    LogoSVGComponent
   ],
   imports: [
     BrowserModule,

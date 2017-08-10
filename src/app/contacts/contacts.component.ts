@@ -87,12 +87,12 @@ import { slideIn } from '../load-animation';
     slideIn
   ]
 })
-export class ContactsComponent {
+export class ContactsComponent  {
     icons = [
         {name: 'Xing', state: 'out', link: 'http://www.xing.com/profile/Oksana_Kondratiuk'},
         {name: 'Github', state: 'out', link: 'http://github.com/KsyuFoxy'},
-        {name: 'Skype', state: 'out', link: ''},
-        {name: 'E-mail', state: 'out', link: ''}
+        {name: 'Skype', state: 'out', link: 'skype:oksana.o.k.?chat'},
+        {name: 'E-mail', state: 'out', link: 'mailto:ksyu@web.de'}
     ];
     state: string;
     locs = [

@@ -1,53 +1,53 @@
 @import '../global';
 
 svg {
-  width: 84px;
+  width: 220px;
   height: auto;
+  &:focus {
+      outline: 0;
+  }
 }
 .svg-container {
-    position: absolute;
-    left: 1em;
-    top: -1em;
+    position: relative;
+    width: 220px;
+    margin: 20vh auto 0;
+    opacity: 0;
+    animation: moveLogo 5s linear;
 }
-svg:focus {
-    outline: 0;
+@keyframes moveLogo {
+    0% {transform: scale(1); opacity: 1;}
+    65% {transform: scale(1); opacity: 1;}
+    76% {transform: scale(1.05); opacity: 1;}
+    84% {transform: scale(0.95); opacity: 1;}
+    90% {transform: scale(1); opacity: 1;}
+    100% {transform: scale(1); opacity: 0;}
 }
-.animateLogo {
-    cursor: pointer;
-    .logo-bg {
-        animation: drawBG 6s linear;
-    }
-    @keyframes drawBG {
-        0% {opacity: 0}
-        30% {opacity: 1}
-        100% {opacity: 1}
-    }
-    .logo-path {
-        fill-opacity: 0;
-        stroke: $blue;
-        stroke-width: 0.5;
-        stroke-dasharray: 200;
-        stroke-dashoffset: 200;
-        animation: drawPath 6s linear;
-    }
-    @keyframes drawPath {
-        0% {stroke-dashoffset: 200; stroke: $blue; opacity: 1}
-        30% {stroke: $light-grey; opacity: 0}
-        100% {stroke-dashoffset: 0; stroke: $light-grey; opacity: 0}
-    }
+
+.logo-path {
+    fill-opacity: 0;
+    stroke: $blue;
+    stroke-width: 0.1;
+    stroke-dasharray: 100;
+    stroke-dashoffset: 10000;
+    animation: drawPath 10s linear forwards;
 }
+@keyframes drawPath {
+    0% {stroke-dashoffset: 10000;}
+    100% {stroke-dashoffset: 20;}
+}
+
 @media (min-width: $mobile ) and (max-width: $tablet) {
-    .svg-container {
-        left: 2em;
-        top: 0;
+    svg, .svg-container  {
+      width: 350px;
     }
 }
 @media (min-width: $tablet + 1) {
     svg {
-      width: 95px;
+      width: 500px;
     }
     .svg-container {
-        left: 3em;
-        top: 0;
+        width: 500px;
+        margin: 30vh auto 0;
     }
+
 }

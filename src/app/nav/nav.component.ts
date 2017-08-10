@@ -53,9 +53,8 @@ export class NavComponent implements OnInit {
                 } else {
                     this.pageNavColor = 'grey';
                 }
-        });
-
-    }
+            });
+        }
     ngOnInit(){
         if (innerWidth < 480) {
             this.closeMedia1 = 'closeLine1Mobile';

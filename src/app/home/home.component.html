@@ -1,27 +1,30 @@
-<div class="page-content" (window:resize)="onResize($event)" [@slideIn]='slideInState'>
-    <div class="home-photo">
-        <img src="" alt="">
-    </div>
-    <div class="home-info">
-        <div *ngIf="mobile">
-            <h1>Content</h1>
-            <h1>Definition</h1>
+<div class="page-content">
+    <logo-svg></logo-svg>
+    <div class="content-wrapper" (window:resize)="onResize($event)" [@onLoad]="visibility">
+        <div class="home-photo">
+            <img src="" alt="">
         </div>
-        <div *ngIf="!mobile" class="movable-content">
-            <div class='letterDiv'>
-                <div *ngFor='let letterN of letterNs; let i = index' [@blurAnimation]='letterN.state'
-                    (mouseenter)='blurText(letterN)' (mouseleave)='backText(letterN)'
-                    [style.left]='letteNLeft(i)'>{{letterN.name}}</div>
+        <div class="home-info">
+            <div *ngIf="mobile">
+                <h1>Content</h1>
+                <h1>Definition</h1>
             </div>
-            <div class='letterDiv'>
-                <div *ngFor='let letterF of letterFs; let i = index' [@blurAnimation]='letterF.state'
-                    (mouseenter)='blurText(letterF)' (mouseleave)='backText(letterF)'
-                    [style.left]='letteFLeft(i)'>{{letterF.name}}</div>
+            <div *ngIf="!mobile" class="movable-content">
+                <div class='letterDiv'>
+                    <div *ngFor='let letterN of letterNs; let i = index' [@blurAnimation]='letterN.state'
+                        (mouseenter)='blurText(letterN)' (mouseleave)='backText(letterN)'
+                        [style.left]='letteNLeft(i)'>{{letterN.name}}</div>
+                </div>
+                <div class='letterDiv'>
+                    <div *ngFor='let letterF of letterFs; let i = index' [@blurAnimation]='letterF.state'
+                        (mouseenter)='blurText(letterF)' (mouseleave)='backText(letterF)'
+                        [style.left]='letteFLeft(i)'>{{letterF.name}}</div>
+                </div>
             </div>
-        </div>
-        <div class="constant-content">
-            <div class="divide-line"></div>
-            <fd-text></fd-text>
+            <div class="constant-content">
+                <div class="divide-line"></div>
+                <fd-text></fd-text>
+            </div>
         </div>
     </div>
 </div>

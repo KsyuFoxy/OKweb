@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd, NavigationStart } from '@angular/router';
+import 'rxjs/add/operator/filter';
 import { trigger, state, style, animate, transition, keyframes } from '@angular/animations';
-import { slideIn } from '../load-animation';
 
 @Component({
   selector: 'home',
@@ -18,8 +19,12 @@ import { slideIn } from '../load-animation';
                 style({color: '#d0d3d4', transform: 'scale(1.1, 1.1)', offset: 1}),
               ]))
             ])
-    ]),
-    slideIn
+        ]),
+        trigger('onLoad', [
+          state('show' , style({ opacity: 1 })),
+          state('hidden', style({ opacity: 0 })),
+          transition('hidden => show', animate('2s'))
+      ]),
   ]
 })
 export class HomeComponent implements OnInit {
@@ -30,12 +35,32 @@ export class HomeComponent implements OnInit {
     state: string = 'stable';
     leftN = 75;
     leftF = 0;
-
     mobile = false;
-    slideInState = 'in';
+    visibility = 'hidden';
+    activUrl;
+    previousUrl;
+
+    constructor(private router:Router) {
+        router.events.subscribe((path:any) => {
+            this.activUrl = path.url;
+            console.log(this.activUrl)
+            });
+        router.events
+        .filter(event => event instanceof NavigationEnd)
+        .subscribe(e => {
+          console.log('prev:', this.previousUrl);
+          this.previousUrl = e;
+        });
+        }
 
     ngOnInit() {
-            if( innerWidth < 768) {
+        if(this.visibility = 'hidden') {
+            setTimeout(() => {
+              this.visibility = 'show';
+            }, 5000);
+        }
+
+        if ( innerWidth < 768) {
             this.mobile = true;
         } else {
             this.mobile = false;
