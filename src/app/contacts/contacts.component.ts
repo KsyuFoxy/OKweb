@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { trigger, state, style, animate, transition, keyframes } from '@angular/animations';
 import { slideIn } from '../load-animation';
+import { MapsAPILoader } from '@agm/core';
+declare var google:any;
 
 @Component({
   selector: 'contacts',
@@ -9,10 +11,10 @@ import { slideIn } from '../load-animation';
             <logo></logo>
             <h2>Get in touch</h2>
             <div class="divide-line"></div>
-            <p> my online profiles on </p>
+            <p> my online profiles and contacts </p>
             <div class="social-icons">
-                <a *ngFor="let icon of icons" [href]="icon.link" target="_blank">
-                    <img [src]="'./src/app/image/' + icon.name + '.png'"
+                <a *ngFor="let icon of icons" [href]="icon.link">
+                    <img [src]="'./src/app/image/' + icon.name + '.png'" (click)='needNewTab(icon)'
                          [@iconAnimation]='icon.state' (mouseenter)='iconOver(icon)' (mouseleave)='iconLeave(icon)'>
                 </a>
             </div>
@@ -22,7 +24,7 @@ import { slideIn } from '../load-animation';
             </div>
             <div class="map">
                 <agm-map [latitude]="lat" [longitude]="lng" [zoom]="5" [scrollwheel]="false">
-                    <agm-marker [latitude]="lat" [longitude]="lng" [iconUrl]="marker" [opacity] = "markerOpacity"></agm-marker>
+                    <agm-marker [latitude]="lat" [longitude]="lng" [iconUrl]="marker" [opacity] = "markerOpacity"   ></agm-marker>
                 </agm-map>
             </div>
         </div>
@@ -89,10 +91,10 @@ import { slideIn } from '../load-animation';
 })
 export class ContactsComponent  {
     icons = [
-        {name: 'Xing', state: 'out', link: 'http://www.xing.com/profile/Oksana_Kondratiuk'},
-        {name: 'Github', state: 'out', link: 'http://github.com/KsyuFoxy'},
-        {name: 'Skype', state: 'out', link: 'skype:oksana.o.k.?chat'},
-        {name: 'E-mail', state: 'out', link: 'mailto:ksyu@web.de'}
+        {name: 'Xing', state: 'out', link: 'http://www.xing.com/profile/Oksana_Kondratiuk', newTab: 'yes'},
+        {name: 'Github', state: 'out', link: 'http://github.com/KsyuFoxy', newTab: 'yes'},
+        {name: 'Skype', state: 'out', link: 'skype:oksana.o.k.?chat', newTab: 'no'},
+        {name: 'E-mail', state: 'out', link: 'mailto:ksyu@web.de', newTab: 'no'}
     ];
     state: string;
     locs = [
@@ -106,13 +108,21 @@ export class ContactsComponent  {
         {name: 'n', locState: 'down2right', initial: 'down2right'}
     ];
     locState: string = '';
-
     lat: number = 53.551086;
     lng: number = 9.993682;
+
     marker = './src/app/image/Location_blue.png';
     markerOpacity: number;
     slideInState = 'in';
-
+ constructor(private mapsAPILoader:MapsAPILoader) {}
+    needNewTab(icon) {
+        if (icon.newTab === 'yes') {
+            window.open(icon.link, '_blank');
+            return false;
+        } else {
+            window.open(icon.link, '_self');
+        }
+    }
     iconOver(icon: any) {
         icon.state = 'hover';
         icon.name = icon.name + '_blue';
@@ -133,6 +143,12 @@ export class ContactsComponent  {
           });
       }, 1200);
 
+      this.mapsAPILoader.load().then(() => {
+          let bounds = new google.maps.LatLngBounds();
+          console.log(bounds);
+          var markerPosition = {lat: 0, lng: 0};
+          console.log(markerPosition);
+      })
     }
 
 

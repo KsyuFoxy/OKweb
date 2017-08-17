@@ -28,10 +28,10 @@ import { trigger, state, style, animate, transition, keyframes } from '@angular/
   ]
 })
 export class HomeComponent implements OnInit {
-    letterNs = [{name: 'C', state: ''}, {name: 'o', state: ''}, {name: 'n', state: ''},
-               {name: 't', state: ''}, {name: 'e', state: ''}, {name: 'n', state: ''}, {name: 't', state: ''}];
-    letterFs = [{name: 'D', state: ''}, {name: 'e', state: ''}, {name: 'f', state: ''}, {name: 'i', state: ''}, {name: 'n', state: ''},
-              {name: 'i', state: ''}, {name: 't', state: ''}, {name: 'i', state: ''}, {name: 'o', state: ''}, {name: 'n', state: ''}];
+    letterNs = [{name: 'O', state: ''}, {name: 'k', state: ''}, {name: 's', state: ''},
+               {name: 'a', state: ''}, {name: 'n', state: ''}, {name: 'a', state: ''}];
+    letterFs = [{name: 'K', state: ''}, {name: 'o', state: ''}, {name: 'n', state: ''}, {name: 'd', state: ''}, {name: 'r', state: ''},
+              {name: 'a', state: ''}, {name: 't', state: ''}, {name: 'i', state: ''}, {name: 'u', state: ''}, {name: 'k', state: ''}];
     state: string = 'stable';
     leftN = 75;
     leftF = 0;
