@@ -9,14 +9,14 @@ import { trigger, state, style, animate, transition, keyframes } from '@angular/
   styleUrls: ['./home.component.scss'],
   animations: [
       trigger('blurAnimation', [
-          state('stable', style({color: 'white'})),
+          state('stable', style({color: '#515151'})),
           state('blur', style({color: '#d0d3d4', transform: 'scale(1, 1)'})),
           transition('blur <=> stable', [
               animate(1000, keyframes([
-                style({color: 'white', transform: 'scale(1, 1)', offset: 0.5}),
+                style({color: '#515151', transform: 'scale(1, 1)', offset: 0.5}),
                 style({color: '#d0d3d4', transform: 'scale(1.5, 1.1)', offset: 0.7}),
                 style({color: '#d0d3d4', transform: 'scale(1, 0.8)', offset: 0.8}),
-                style({color: '#d0d3d4', transform: 'scale(1.1, 1.1)', offset: 1}),
+                style({color: 'white', transform: 'scale(1.1, 1.1)', offset: 1}),
               ]))
             ])
         ]),
