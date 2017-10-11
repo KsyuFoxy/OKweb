@@ -43,12 +43,11 @@ export class HomeComponent implements OnInit {
     constructor(private router:Router) {
         router.events.subscribe((path:any) => {
             this.activUrl = path.url;
-            console.log(this.activUrl)
             });
         router.events
         .filter(event => event instanceof NavigationEnd)
         .subscribe(e => {
-          console.log('prev:', this.previousUrl);
+        //   console.log('prev:', this.previousUrl);
           this.previousUrl = e;
         });
         }

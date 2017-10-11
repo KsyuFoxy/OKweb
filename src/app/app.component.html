@@ -1,6 +1,6 @@
 <div class="fixed-content">
     <router-outlet class="app-content"></router-outlet>
     <navigation class='nav-component'  [@NavContainerAnimation]="navContainerState.state"
-                (click)='toggleNavContainer()' (clickOutside)="onClickedOutsideNavContainer($event)"></navigation>
-    <p class="cupture">This site was built using Angular 2 and styled with SCSS</p>
+                (click)='toggleNavContainer()' (clickOutside)="onClickedOutsideNavContainer($event)">
+    </navigation>
 </div>

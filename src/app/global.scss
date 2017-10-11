@@ -48,6 +48,11 @@ p, span {
     box-shadow: 9px -3px 5px white;
     background: $line-gradient;
 }
+.cupture {
+    position: relative;
+    text-align: center;
+    font-size: 12px;
+}
 
 @media (min-width: $mobile) and (max-width: $tablet) {
     h1 {
@@ -77,5 +82,8 @@ p, span {
         width: 550px;
         height: 3px;
         margin: 50px auto;
+    }
+    .cupture {
+        font-size: 16px;
     }
 }

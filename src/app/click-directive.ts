@@ -22,7 +22,6 @@ export class ClickOutside implements OnInit {
     private isClickInElement(e:any):boolean {
         var current = e.target;
         do {
-            // console.log(current);
             if ( current === this._el.nativeElement ) {
                 return( true );
             }

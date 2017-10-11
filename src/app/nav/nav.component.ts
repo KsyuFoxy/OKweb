@@ -100,7 +100,6 @@ export class NavComponent implements OnInit {
         } else if (768 <= innerWidth ) {
             this.lines[0].state === 'closeLine1Laptop';
         }
-        console.log(this.lines[0].state)
     }
 
 

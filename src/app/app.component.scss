@@ -21,14 +21,3 @@ body {
     overflow: hidden;
     z-index: 2;
 }
-.cupture {
-    position: relative;
-    text-align: center;
-    top: 95vh;
-    font-size: 12px;
-}
-@media (min-width: $tablet + 1) {
-    .cupture {
-        font-size: 16px;
-    }
-}

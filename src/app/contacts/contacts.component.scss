@@ -38,6 +38,9 @@ agm-map {
 agm-marker {
   opacity: 0;
 }
+.cupture {
+    margin-top: 1em;
+}
 @media (min-width: $mobile) and (max-width: $tablet) {
     .loc-letters{
         margin: 1em auto 1.5em;

@@ -27,6 +27,7 @@ declare var google:any;
                     <agm-marker [latitude]="lat" [longitude]="lng" [iconUrl]="marker" [opacity] = "markerOpacity"   ></agm-marker>
                 </agm-map>
             </div>
+            <p class="cupture">This site was built using Angular 2 and styled with SCSS</p>
         </div>
     `,
   styleUrls: ['./contacts.component.scss'],
@@ -145,9 +146,7 @@ export class ContactsComponent  {
 
       this.mapsAPILoader.load().then(() => {
           let bounds = new google.maps.LatLngBounds();
-          console.log(bounds);
           var markerPosition = {lat: 0, lng: 0};
-          console.log(markerPosition);
       })
     }
 

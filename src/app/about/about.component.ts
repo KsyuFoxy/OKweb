@@ -27,6 +27,7 @@ import { slideIn } from '../load-animation';
                 </div>
             </div>
             <about-icons *ngIf="!sliderProps.isText"></about-icons>
+            <p class="cupture">This site was built using Angular 2 and styled with SCSS</p>
         </div>
     `,
   styleUrls: ['./about.component.scss'],
