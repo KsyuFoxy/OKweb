@@ -13,7 +13,7 @@ declare var google:any;
             <div class="divide-line"></div>
             <p> my online profiles and contacts </p>
             <div class="social-icons">
-                <a *ngFor="let icon of icons" [href]="icon.link">
+                <a *ngFor="let icon of icons" ng-href="icon.link">
                     <img [src]="'./src/app/image/' + icon.name + '.png'" (click)='needNewTab(icon)'
                          [@iconAnimation]='icon.state' (mouseenter)='iconOver(icon)' (mouseleave)='iconLeave(icon)'>
                 </a>
@@ -58,6 +58,9 @@ declare var google:any;
         state('down2right', style({color: '#515151', top: '0px', left: '0px', opacity: 1})),
         state('transformation', style({color: '#00a19c', top: '190px', opacity: 0})),
         state('up', style({color: '#515151', top: '0px', left: '0px', opacity: 1})),
+        // state('blinkGrey', style({color: "red"})),
+        // state('blinkBlue', style({color: 'green'})),
+        // transition('blinkGrey <=> blinkBlue', [animate('200ms ease-in')]),
         transition('down1left => transformation', [
             animate(1200, keyframes([
               style({color: '#515151', top: '0px', left: '0px', opacity: 1, offset: 0}),
@@ -90,13 +93,14 @@ declare var google:any;
     slideIn
   ]
 })
-export class ContactsComponent  {
+export class ContactsComponent {
     icons = [
         {name: 'Xing', state: 'out', link: 'http://www.xing.com/profile/Oksana_Kondratiuk', newTab: 'yes'},
         {name: 'Github', state: 'out', link: 'http://github.com/KsyuFoxy', newTab: 'yes'},
         {name: 'Skype', state: 'out', link: 'skype:oksana.o.k.?chat', newTab: 'no'},
         {name: 'E-mail', state: 'out', link: 'mailto:ksyu@web.de', newTab: 'no'}
     ];
+
     state: string;
     locs = [
         {name: 'L', locState: 'down1left', initial: 'down1left'},
@@ -111,6 +115,7 @@ export class ContactsComponent  {
     locState: string = '';
     lat: number = 53.551086;
     lng: number = 9.993682;
+    colorState: string = 'blinkGrey';
 
     marker = './src/app/image/Location_blue.png';
     markerOpacity: number;

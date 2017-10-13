@@ -20,7 +20,7 @@
         padding-left: 2em;
     }
     img:hover, p:hover {
-        cursor: context-menu;
+        cursor: default;
        -webkit-filter: invert(0.8) hue-rotate(200deg);
     }
 }
