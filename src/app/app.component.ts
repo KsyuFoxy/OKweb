@@ -8,8 +8,6 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
   styleUrls: ['./app.component.scss'],
   animations: [
       trigger('NavContainerAnimation', [
-        //   state('small', style({height: '85px', width: '115px'})),
-        //   state('big', style({height: '100vh', width: '215px'})),
           state('small', style({height: '85px', width: '115px'})),
           state('big', style({height: '100vh', width: '215px'})),
           transition('small => big', animate('1ms ease-in')),
@@ -20,7 +18,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 export class AppComponent {
         navContainerState: any = {state: 'small'};
         toggleNavContainer() {
-            this.navContainerState.state = (this.navContainerState.state === 'small' ? 'big' : 'small');
+            this.navContainerState.state = 'big';
         }
         onClickedOutsideNavContainer($event) {
             this.navContainerState.state = 'small';

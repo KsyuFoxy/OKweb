@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { trigger, state, style, animate, transition, keyframes } from '@angular/animations';
 import { slideIn } from '../load-animation';
 import { MapsAPILoader } from '@agm/core';
@@ -19,7 +19,7 @@ declare var google:any;
                 </a>
             </div>
             <div class='loc-letters' (mouseenter)='locationOver()'>
-                <div *ngFor='let loc of locs' [@locationAnimation]='loc.locState'>{{loc.name}}
+                <div *ngFor='let loc of locs' [@locationAnimation]='loc.locState' [@locationAnimation]='loc.colorState'>{{loc.name}}
                 </div>
             </div>
             <div class="map">
@@ -58,9 +58,9 @@ declare var google:any;
         state('down2right', style({color: '#515151', top: '0px', left: '0px', opacity: 1})),
         state('transformation', style({color: '#00a19c', top: '190px', opacity: 0})),
         state('up', style({color: '#515151', top: '0px', left: '0px', opacity: 1})),
-        // state('blinkGrey', style({color: "red"})),
-        // state('blinkBlue', style({color: 'green'})),
-        // transition('blinkGrey <=> blinkBlue', [animate('200ms ease-in')]),
+        state('blinkGrey', style({color: "#515151"})),
+        state('blinkBlue', style({color: '#00a19c'})),
+        transition('blinkGrey <=> blinkBlue', [animate('100ms ease-in-out')]),
         transition('down1left => transformation', [
             animate(1200, keyframes([
               style({color: '#515151', top: '0px', left: '0px', opacity: 1, offset: 0}),
@@ -93,7 +93,7 @@ declare var google:any;
     slideIn
   ]
 })
-export class ContactsComponent {
+export class ContactsComponent implements OnInit {
     icons = [
         {name: 'Xing', state: 'out', link: 'http://www.xing.com/profile/Oksana_Kondratiuk', newTab: 'yes'},
         {name: 'Github', state: 'out', link: 'http://github.com/KsyuFoxy', newTab: 'yes'},
@@ -103,24 +103,43 @@ export class ContactsComponent {
 
     state: string;
     locs = [
-        {name: 'L', locState: 'down1left', initial: 'down1left'},
-        {name: 'o', locState: 'down2left', initial: 'down2left'},
-        {name: 'c', locState: 'down1left', initial: 'down1left'},
-        {name: 'a', locState: 'down2left', initial: 'down2left'},
-        {name: 't', locState: 'down1right', initial: 'down1right'},
-        {name: 'i', locState: 'down2right', initial: 'down2right'},
-        {name: 'o', locState: 'down1right', initial: 'down1right'},
-        {name: 'n', locState: 'down2right', initial: 'down2right'}
+        {name: 'L', locState: 'down1left', initial: 'down1left', colorState: ''},
+        {name: 'o', locState: 'down2left', initial: 'down2left', colorState: ''},
+        {name: 'c', locState: 'down1left', initial: 'down1left', colorState: ''},
+        {name: 'a', locState: 'down2left', initial: 'down2left', colorState: ''},
+        {name: 't', locState: 'down1right', initial: 'down1right', colorState: ''},
+        {name: 'i', locState: 'down2right', initial: 'down2right', colorState: ''},
+        {name: 'o', locState: 'down1right', initial: 'down1right', colorState: ''},
+        {name: 'n', locState: 'down2right', initial: 'down2right', colorState: ''}
     ];
     locState: string = '';
     lat: number = 53.551086;
     lng: number = 9.993682;
-    colorState: string = 'blinkGrey';
+    colorState: string = '';
 
     marker = './src/app/image/Location_blue.png';
     markerOpacity: number;
     slideInState = 'in';
  constructor(private mapsAPILoader:MapsAPILoader) {}
+
+    ngOnInit() {
+        this.changeLocationColor();
+    }
+    changeLocationColor() {
+        this.locs.forEach(function(letter, i) {
+            setInterval(function() {
+                letter.colorState = 'blinkGrey';
+                var blueLetters = setInterval(function(){
+                    letter.colorState = 'blinkBlue';
+                }, i*150+200);
+                setInterval(function(){
+                    letter.colorState = 'blinkGrey';
+                    clearInterval(blueLetters);
+                }, i*150+400)
+            }, 5000)
+        })
+    }
+
     needNewTab(icon) {
         if (icon.newTab === 'yes') {
             window.open(icon.link, '_blank');
@@ -140,7 +159,7 @@ export class ContactsComponent {
     locationOver() {
         this.markerOpacity = 0;
         this.locs.forEach(obj => {
-            obj.locState = 'transformation'
+            obj.locState = 'transformation';
         });
         setTimeout (() => {
           this.markerOpacity = 1;
