@@ -17,8 +17,13 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 })
 export class AppComponent {
         navContainerState: any = {state: 'small'};
+        navState: any = {state: 'hide'};
         toggleNavContainer() {
-            this.navContainerState.state = 'big';
+            if (this.navState.state === 'hide') {
+                this.navContainerState.state = 'small';
+            } else {
+                this.navContainerState.state = 'big';
+            }
         }
         onClickedOutsideNavContainer($event) {
             this.navContainerState.state = 'small';

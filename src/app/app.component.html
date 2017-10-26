@@ -1,6 +1,7 @@
 <div class="fixed-content">
     <router-outlet class="app-content"></router-outlet>
     <navigation class='nav-component'  [@NavContainerAnimation]="navContainerState.state"
-                (click)='toggleNavContainer()' (clickOutside)="onClickedOutsideNavContainer($event)">
+                (click)='toggleNavContainer()' (clickOutside)="onClickedOutsideNavContainer($event)"
+                [(navState)]='navState'>
     </navigation>
 </div>

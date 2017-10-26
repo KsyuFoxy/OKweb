@@ -47,9 +47,8 @@ export class HomeComponent implements OnInit {
         router.events
         .filter(event => event instanceof NavigationEnd)
         .subscribe(e => {
-        //   console.log('prev:', this.previousUrl);
-          this.previousUrl = e;
-        });
+              this.previousUrl = e;
+            });
         }
 
     ngOnInit() {

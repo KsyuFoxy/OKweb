@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 
@@ -38,7 +38,8 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 export class NavComponent implements OnInit {
     lines = [{name: '1', state: 'lines'}, {name: '2', state: 'lines'}, {name: '3', state: 'lines'}];
     state: string;
-    navState: any = {state: 'hide'};
+    @Input() navState;
+    @Output() navStateChange = new EventEmitter();
     pages = [{name: 'Home',  link: '/'}, {name: 'About',  link: '/about'}, {name: 'Contacts',  link: '/contacts'}];
     link: string;
     pageNavColor: string;
@@ -68,6 +69,7 @@ export class NavComponent implements OnInit {
     }
     toggleNav() {
         this.navState.state = (this.navState.state === 'hide' ? 'show' : 'hide');
+        this.navStateChange.emit(this.navState);
         this.lines[0].state = (this.lines[0].state === 'lines' ? this.closeMedia1 : 'lines');
         this.lines[1].state = (this.lines[1].state === 'lines' ? 'closeLine2' : 'lines');
         this.lines[2].state = (this.lines[2].state === 'lines' ? 'closeLine3' : 'lines');
@@ -101,6 +103,4 @@ export class NavComponent implements OnInit {
             this.lines[0].state === 'closeLine1Laptop';
         }
     }
-
-
 }

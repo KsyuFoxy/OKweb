@@ -14,13 +14,6 @@
         left: 0;
         margin: 0;
         z-index: 2;
-        // animation: blink 5s linear infinite;
-        // @keyframes blink {
-        //     0% {color: $dark-grey;}
-        //     40% {color: $blue; }
-        //     50% {color: $blue; }
-        //     60% {color: $dark-grey;}
-        // }
     }
     .blink-line {
         position: relative;
@@ -65,7 +58,6 @@ agm-marker {
         height: 16em;
     }
 }
-
 @media (min-width: $tablet + 1) {
     .loc-letters {
         margin: 50px auto 15px;
