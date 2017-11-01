@@ -6,8 +6,13 @@ $mobile: 480px;
 $tablet: 768px;
 $laptop: 1200px;
 
+@font-face {
+    font-family: Haettenschweiler;
+    src: url('/src/app/assets/Haettenschweiler.ttf');
+}
+
 h1 {
-    font-family: 'Haettenschweiler';
+    font-family: Haettenschweiler;
     font-size: 60px;
     letter-spacing: 2px;
     color: #515151;
@@ -15,14 +20,14 @@ h1 {
     line-height: 55px;
 }
 h2 {
-    font-family: 'Haettenschweiler';
+    font-family: Haettenschweiler;
     font-size: 40px;
     letter-spacing: 1px;
     margin: 25px 0 5px;
     color: $blue;
 }
 h3 {
-    font-family: 'Haettenschweiler';
+    font-family: Haettenschweiler;
     font-size: 30px;
     letter-spacing: 2.2px;
     margin: 20px;
